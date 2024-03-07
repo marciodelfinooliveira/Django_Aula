@@ -5,4 +5,4 @@ class CepSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Cep
-        fields = ['cep', 'rua', 'bairro', 'cidade', 'uf', 'ddd']
+        fields = ['id','cep', 'rua', 'bairro', 'cidade', 'uf', 'ddd']
