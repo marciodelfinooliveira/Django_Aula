@@ -13,5 +13,9 @@ services:
       - "8000:8000"
     environment:
       PYTHONUNBUFFERED: 1
-    stdin_open: true
-    tty: true
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
