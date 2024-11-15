@@ -4,47 +4,6 @@ from rest_framework.viewsets import ModelViewSet
 import requests
 from apps.cep.models import Cep
 from .serializers import CepSerializer
-
-#https://www.4devs.com.br/gerador_de_cep
-
-# class CepViewSet(APIView):
-    
-#     def get(self, request, cep):
-        
-#         url = f'https://viacep.com.br/ws/{cep}/json/'
-        
-#         response = requests.get(url)
-        
-#         if request.method == 'GET':
-                
-#             data = response.json()
-            
-#             if data.get('cep') in Cep.objects.values_list('cep', flat=True):
-                
-#                 return Response({"error": "CEP já cadastrado"}, status=400)
-
-#             cep = Cep.objects.create(
-#                 cep=data.get('cep'),
-#                 rua=data.get('logradouro'),
-#                 bairro=data.get('bairro'),
-#                 cidade=data.get('localidade'),
-#                 uf=data.get('uf'),
-#                 ddd=data.get('ddd'),
-#             )
-
-#             cep.save()
-            
-#             return Response(data)
-        
-#         else:
-            
-#             return Response({"error": "CEP não encontrado"}, status=response.status_code)
-        
-# class ShowCepList(ListAPIView):
-    
-#     queryset = Cep.objects.all()
-#     serializer_class = CepSerializer
-
 class CepViewSet(ModelViewSet):
     
     queryset = Cep.objects.all()
@@ -88,8 +47,10 @@ class ShowCepList(ModelViewSet):
     queryset = Cep.objects.all()
     serializer_class = CepSerializer
 
-    
-    
+    def list(self, request):
+        queryset = Cep.objects.all()
+        serializer = CepSerializer(queryset, many=True)
+        return Response(serializer.data)
     
     
     

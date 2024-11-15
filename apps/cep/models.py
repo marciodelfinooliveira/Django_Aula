@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Cep(models.Model):
     
     cep =  models.CharField(max_length=9)
