@@ -4,6 +4,7 @@ from rest_framework.viewsets import ModelViewSet
 import requests
 from apps.cep.models import Cep
 from .serializers import CepSerializer
+
 class CepViewSet(ModelViewSet):
     
     queryset = Cep.objects.all()
