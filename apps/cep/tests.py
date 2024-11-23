@@ -57,7 +57,7 @@ class TestCepViewSet(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(response.data["error"], "CEP já cadastrado")
 
-    # Mockando a resposta da API externa para um CEP inválido
+    # Testa CEP inválido
     @patch('apps.cep.api.viewsets.requests.get')
     def test_create_cep_invalido(self, mock_get):
         mock_get.return_value.status_code = 400
